@@ -1,0 +1,89 @@
+
+    <template>
+
+        <p>{{ obj }}</p>
+
+        //可以带括号 可以不带   相当与 v-on:click="方法名"
+        <button @click="方法名"></button>
+
+        //传值
+        <button v-on:click="say('hi')">Say hi</button>
+
+        // v-bind:hidden  简写为 :hidden  与Html hidden一样
+        <input :hidden="false" value="adasddasd"/>
+
+
+        //点击 p标签触发事件  点击button不会触发
+        //只当事件在该元素本身（而不是子元素）触发时触发回调
+        <p @click.self="doThat" style="background: red"><button>111</button></p>
+
+        // 只会触发一次
+        <a @click.once="doThis">doThis</a>
+
+        //  输入的 键盘对应码为65时 触发事件
+        <input v-on:keyup.65="submit"/>
+
+        //  捕获“删除”和“退格”键  v-on 简写为@
+        <input @:keyup.delete="submit">
+        .enter
+        .tab
+        .delete (捕获 "删除" 和 "退格" 键)
+        .esc
+        .space  回车
+        .up     上
+        .down   下
+        .left   左
+        .right  右
+        .ctrl
+        .alt
+        .shift
+        .meta
+
+        //   ctrl + 单击
+        <input @click.ctrl ="submit">
+    </template>
+
+
+    export default {
+
+        data(){
+          return{
+            // 定义值 与 html中一致
+            obj : "张三",
+            counter : 0
+          }
+        },
+        computed{
+            obj:function(){
+
+            }
+            //一样    {{}}  不能在data中定义  目前这样
+            obj:{
+                get: function () {
+                   for(var i=0;i<this.arr.length;i++){
+                       if(this.arr[i].id==1){
+                            return this.arr[i].id + ' ' + this.arr[i].name
+                       }
+                   }
+                },
+            }
+        },
+        //理解为  文本框内容改变事件
+        watch : {
+            obj1:function(val) {
+               this.obj1 = val;
+               this.obj2 = this.obj1 * 1000
+            },
+            obj2 : function (val) {
+               this.obj2 = val/ 1000;
+               this.obj2 = val;
+            },
+        },
+        // 理解为  点击事件
+        methods:{
+            obj : function(){
+               this.counter++;
+               alert(this.counter);
+            },
+        }
+    }

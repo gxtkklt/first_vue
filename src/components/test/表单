@@ -1,0 +1,57 @@
+
+<template>
+    <div>
+      <!-- 下拉列 -->
+      //  如果加上 value 那么获取的是 value的值 如果不加则是获取的文本值
+      <select v-model="selected1">
+        <option value="选中A">A</option>
+        <option>B</option>
+        <option>C</option>
+      </select>
+      //  下拉列内容改变 <span> 中的值也会随之改变
+      <span>选中的为: {{ selected1 }}</span>
+
+
+      <!-- 单选 -->
+      //  如果value值相同  都会选上  不清楚
+      <input type="radio" id="small" value="small" v-model="picked">
+      <label for="small">small1</label>
+      <br>
+      <input type="radio" id="big" value="big" v-model="picked">
+      <label for="big">big2</label>
+      <br>
+      <span>Picked: {{ picked }}</span>
+
+      //  v-model.lazy      理解为失去焦点事件
+      //  v-model           理解为内容改变事件
+      //  v-model.number    理解为type="number"
+      //  v-model.trim      去掉左右空格
+      <input type="text" v-model="aazcxz"/>
+
+
+      <!-- 复选框 -->
+      <input type="checkbox" id="one" value="value_one" v-model="checkedNames">
+      <label for="one">选项一</label>
+      <input type="checkbox" id="two" value="value_two" v-model.lazy="checkedNames">
+      <label for="two">选项二</label>
+      <input type="checkbox" id="three" value="value_three" v-model.lazy="checkedNames">
+      <label for="three">选项三</label>
+      //  会拼成一个数组
+      <span>Checked names: {{ checkedNames }}</span>
+
+    </div>
+</template>
+
+<script>
+
+    export default {
+        data() {
+           return {
+              selected1:'',
+              checkedNames:[]
+
+           }
+        }
+    }
+
+</script>
